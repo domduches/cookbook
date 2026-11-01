@@ -293,3 +293,23 @@
     }
 
     function releaseWakeLock() {
+if (wakeLock !== null) {
+wakeLock.release();
+wakeLock = null;
+statusMsg.textContent = "🔓 Écran libre : mise en veille normale activée.";
+statusMsg.style.color = "#4a3e3d";
+}
+}
+toggle.addEventListener('change', function() {
+if (this.checked) {
+requestWakeLock();
+} else {
+releaseWakeLock();
+}
+});
+// Réactiver automatiquement si l'utilisateur change d'onglet et revient
+document.addEventListener('visibilitychange', async () => {
+if (wakeLock !== null && document.visibilityState === 'visible' && toggle.checked) {
+await requestWakeLock();
+}
+});
