@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Cookbook Privé</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #f7f3ed;
+            --text-color: #3e3229;
+            --primary: #d96a36;
+            --primary-light: #fff0e6;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 30px 15px;
+        }
+
+        .dashboard {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        header i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: #2b1f17;
+            font-weight: 700;
+        }
+
+        header p {
+            color: #8a7667;
+            font-size: 0.95rem;
+            margin-top: 5px;
+        }
+
+        .recipe-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .recipe-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 4px 15px rgba(62, 50, 41, 0.04);
+            border: 1px solid #eae1d8;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(217, 106, 54, 0.1);
+            border-color: #f5d3bf;
+        }
+
+        .recipe-details {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .recipe-icon {
+            width: 48px;
+            height: 48px;
+            background-color: var(--primary-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.4rem;
+        }
+
+        .recipe-info h3 {
+            font-size: 1.15rem;
+            color: #2b1f17;
+            margin-bottom: 4px;
+        }
+
+        .tags {
+            display: flex;
+            gap: 8px;
+            font-size: 0.75rem;
+            color: #8a7667;
+        }
+
+        .tags span {
+            background: #f0eae1;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .arrow-link {
+            color: #c7b8ad;
+            font-size: 1.2rem;
+            transition: color 0.2s;
+        }
+
+        .recipe-card:hover .arrow-link {
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+<div class="dashboard">
+    <header>
+        <i class="fas fa-book-open"></i>
+        <h1>Mon Cookbook</h1>
+        <p>Mes fiches recettes interactives optimisées pour la cuisine</p>
+    </header>
+
+    <div class="recipe-grid">
+        <a href="veloute_citrouille_pomme_cumin.html" class="recipe-card">
+            <div class="recipe-details">
+                <div class="recipe-icon">
+                    <i class="fas fa-soup"></i>
+                </div>
+                <div class="recipe-info">
+                    <h3>Velouté Citrouille, Pomme & Cumin</h3>
+                    <div class="tags">
+                        <span><i class="fas fa-clock"></i> 40 min</span>
+                        <span><i class="fas fa-snowflake"></i> Congelable</span>
+                    </div>
+                </div>
+            </div>
+            <div class="arrow-link">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>
