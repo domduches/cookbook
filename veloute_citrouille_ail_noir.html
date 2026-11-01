@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velouté de Citrouille à l'Ail Noir - Mode Cuisine</title>
+    <style>
+        :root {
+            --bg-color: #fdfaf6;
+            --card-bg: #ffffff;
+            --text-color: #4a3e3d;
+            --accent-color: #2b2b2b;
+            --accent-light: #e6dfd3;
+            --success-color: #6e806c;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .back-link:hover {
+            opacity: 1;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-top: 10px;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .meta {
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.6;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        /* Commutateur Mode Cuisine */
+        .wake-lock-container {
+            background-color: var(--bg-color);
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border: 1px solid var(--accent-light);
+        }
+
+        .wake-lock-info h3 {
+            margin: 0;
+            font-size: 1rem;
+            color: var(--accent-color);
+        }
+
+        .wake-lock-info p {
+            margin: 2px 0 0 0;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 26px;
+        }
+
+        .switch input { 
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--success-color);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+
+        .status-msg {
+            text-align: center;
+            font-size: 0.8rem;
+            margin-top: -20px;
+            margin-bottom: 20px;
+            min-height: 18px;
+            font-weight: 500;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--bg-color);
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+
+        /* Listes interactives */
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 10px 0;
+            border-bottom: 1px solid #f9f6f0;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        input[type="checkbox"] {
+            margin-top: 5px;
+            margin-right: 12px;
+            accent-color: var(--success-color);
+            cursor: pointer;
+            width: 16px;
+            height: 16px;
+        }
+
+        .checked-text {
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+
+        ol {
+            padding-left: 20px;
+        }
+
+        ol li {
+            display: list-item;
+            padding: 8px 0;
+            border-bottom: none;
+        }
+
+        .note {
+            background-color: #f4f0ea;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-top: 25px;
+            border-left: 4px solid var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="index.html" class="back-link">← Retour au livre de recettes</a>
+    
+    <h1>🖤 Velouté de Citrouille à l'Ail Noir</h1>
+    <div class="meta">Quantité : 1.5kg de citrouille | Version Congélable</div>
+
+    <!-- Mode Cuisine UI -->
+    <div class="wake-lock-container">
+        <div class="wake-lock-info">
+            <h3>Mode Cuisine</h3>
+            <p>Empêche l'écran de se mettre en veille</p>
+        </div>
+        <label class="switch">
+            <input type="checkbox" id="wakeLockToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+    <div id="statusMessage" class="status-msg"></div>
+
+    <h2>Ingrédients</h2>
+    <ul>
+        <li><input type="checkbox"><span><strong>1,5 kg</strong> de chair de citrouille (ou potiron), en cubes</span></li>
+        <li><input type="checkbox"><span><strong>6 à 8 gousses</strong> d'ail noir (selon leur taille)</span></li>
+        <li><input type="checkbox"><span><strong>2</strong> gros oignons, hachés</span></li>
+        <li><input type="checkbox"><span><strong>2 gousses</strong> d'ail blanc traditionnel, émincées</span></li>
+        <li><input type="checkbox"><span><strong>3</strong> pommes acidulées (ex: Granny Smith), pelées et coupées</span></li>
+        <li><input type="checkbox"><span><strong>1,8 à 2 litres</strong> de bouillon de légumes</span></li>
+        <li><input type="checkbox"><span><strong>2 c. à soupe</strong> d'huile végétale (olive ou canola)</span></li>
+        <li><input type="checkbox"><span><strong>1 c. à soupe</strong> de sauce soya ou de miso blanc (optionnel, pour maximiser l'umami)</span></li>
+        <li><input type="checkbox"><span>Sel et poivre du moulin</span></li>
+    </ul>
+
+    <h2>Préparation</h2>
+    <ol>
+        <li><strong>Faire suer la base :</strong> Chauffer l'huile végétale à feu moyen dans une grande marmite. Faire revenir les oignons et l'ail blanc pendant 3 à 4 minutes jusqu'à ce qu'ils soient tendres et translucides.</li>
+        <li><strong>Ajouter les ingrédients :</strong> Ajouter les cubes de citrouille, les morceaux de pomme et les gousses d'ail noir légèrement écrasées à la fourchette. Si vous utilisez la sauce soya ou le miso, incorporez-les maintenant. Remuer le tout pendant 2 minutes.</li>
+        <li><strong>Mijoter :</strong> Mouiller avec le bouillon de légumes de manière à couvrir les morceaux. Porter à ébullition, puis réduire le feu, couvrir et laisser mijoter de 20 à 25 minutes (les légumes doivent être bien tendres sous la pointe d'un couteau).</li>
+        <li><strong>Mixer :</strong> Retirer du feu et passer le tout au mixeur plongeant jusqu'à l'obtention d'un velouté soyeux et homogène. L'ail noir va se dissoudre complètement, donnant une couleur légèrement ambrée et profonde à la soupe. Ajuster l'assaisonnement avec le sel et le poivre.</li>
+    </ol>
+
+    <h2>Règles de congélation</h2>
+    <ol>
+        <li>Laisser la soupe refroidir entièrement à température ambiante, puis la placer au réfrigérateur quelques heures.</li>
+        <li>Transférer dans des contenants hermétiques ou des sacs de congélation en laissant un espace de 2 cm au sommet.</li>
+        <li>Se conserve 3 mois. Ajouter de la crème ou une touche finale seulement au moment du service après décongélation.</li>
+    </ol>
+
+    <div class="note">
+        <strong>Note du chef :</strong> Au moment de réchauffer pour servir, l'ail noir adore l'association avec quelques brisures de châtaignes grillées ou un filet d'huile de sésame grillé.
+    </div>
+</div>
+
+<script>
+    // Gestionnaire visuel des ingrédients rayés
+    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const textSpan = this.nextElementSibling;
+            if (this.checked) {
+                textSpan.classList.add('checked-text');
+            } else {
+                textSpan.classList.remove('checked-text');
+            }
+        });
+    });
+
+    // Logique de l'API Screen Wake Lock
+    let wakeLock = null;
+    const toggle = document.getElementById('wakeLockToggle');
+    const statusMsg = document.getElementById('#statusMessage') || document.getElementById('statusMessage');
+
+    async function requestWakeLock() {
+        try {
+            wakeLock = await navigator.wakeLock.request('screen');
+            statusMsg.textContent = "🔒 Écran verrouillé : il restera allumé !";
+            statusMsg.style.color = "#6e806c";
+            
+            wakeLock.addEventListener('release', () => {
+                if (toggle.checked) {
+                    toggle.checked = false;
+                }
+            });
+        } catch (err) {
+            toggle.checked = false;
+            if (window.location.protocol !== 'https:') {
+                statusMsg.textContent = "❌ Erreur : Le Mode Cuisine requiert une adresse HTTPS (ex: GitHub Pages).";
+            } else {
+                statusMsg.textContent = `❌ Impossible d'activer : ${err.message}`;
+            }
+            statusMsg.style.color = "#a94442";
+        }
+    }
+
+    function releaseWakeLock() {
