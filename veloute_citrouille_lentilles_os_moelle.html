@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velouté Citrouille, Lentilles & Os à Moelle</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #fcf8f2;
+            --card-bg: #ffffff;
+            --text-color: #4a3728;
+            --primary-color: #e06d3b;
+            --primary-dark: #b85225;
+            --accent-color: #f7b05b;
+            --border-color: #eedfd2;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 30px 25px;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(184, 82, 37, 0.08);
+            border: 1px solid var(--border-color);
+        }
+
+        .nav-back {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-back i {
+            margin-right: 8px;
+        }
+
+        .nav-back:hover {
+            color: var(--primary-dark);
+        }
+
+        h1 {
+            color: var(--primary-dark);
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            font-size: 0.9rem;
+            color: #8c7361;
+            margin-bottom: 25px;
+        }
+
+        .meta-info span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .wake-lock-panel {
+            background-color: #fff6ee;
+            border: 1px solid #ffd8b3;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .toggle-container {
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            gap: 12px;
+            user-select: none;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 26px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px; width: 18px;
+            left: 4px; bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary-color);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+
+        .status-text {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .error-message {
+            color: #d9381e;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            display: none;
+            padding: 0 10px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin: 25px 0 15px;
+            border-bottom: 2px solid #fff0e0;
+            padding-bottom: 5px;
+        }
+
+        .ingredient-list {
+            list-style: none;
+        }
+
+        .ingredient-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--border-color);
+            cursor: pointer;
+        }
+
+        .ingredient-item input[type="checkbox"] {
+            margin-right: 12px;
+            margin-top: 5px;
+            accent-color: var(--primary-color);
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .ingredient-item.checked span {
+            text-decoration: line-through;
+            color: #a69282;
+        }
+
+        .step-list {
+            counter-reset: step;
+        }
+
+        .step-item {
+            position: relative;
+            padding-left: 45px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .step-item::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0; top: 2px;
+            width: 28px; height: 28px;
+            background-color: #fff0e0;
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .step-item.completed {
+            color: #a69282;
+        }
+
+        .step-item.completed::before {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .freeze-badge {
+            background-color: #e1f5fe;
+            color: #0288d1;
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            margin-top: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #b3e5fc;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="index.html" class="nav-back"><i class="fas fa-arrow-left"></i> Retour au Cookbook</a>
+    
+    <h1>Velouté Citrouille, Lentilles & Os à Moelle</h1>
+    
+    <div class="meta-info">
+        <span><i class="fas fa-utensils"></i> 6-8 portions</span>
+        <span><i class="fas fa-fire"></i> Four 200 °C</span>
+        <span><i class="fas fa-snowflake"></i> Congelable 3 mois</span>
+    </div>
+
+    <div class="wake-lock-panel">
+        <label class="toggle-container">
+            <span class="status-text" id="status-label">Mode Cuisine désactivé</span>
+            <div class="switch">
+                <input type="checkbox" id="wakeLockToggle">
+                <span class="slider"></span>
+            </div>
+        </label>
+        <div class="error-message" id="errorMessage"></div>
+    </div>
+
+    <h2>Ingrédients</h2>
+    <ul class="ingredient-list">
+        <li class="ingredient-item" onclick="toggleItem(this)">
+            <input type="checkbox">
+            <span><strong>1,5 kg</strong> de chair de citrouille en dés</span>
+        </li>
+        <li class="ingredient-item" onclick="toggleItem(this)">
+            <input type="checkbox">
+            <span><strong>300 à 450 g</strong> de lentilles</span>
+        </li>
+        <li class="ingredient-item" onclick="toggleItem(this)">
+            <input type="checkbox">
+            <span><strong>4 à 6</strong> os à moelle</span>
+        </li>
+        <li class="ingredient-item" onclick="toggleItem(this)">
+            <input type="checkbox">
+            <span><strong>1 c. à soupe</strong> de graines de cumin entières</span>
+        </li>
+        <li class="ingredient-item" onclick="toggleItem(this)">
+            <input type="checkbox">
+            <span><strong>2,5 à 3 litres</strong> de bouillon</span>
+        </li>
+        <li class="ingredient-item" onclick="toggleItem(this)">
+            <input type="checkbox">
+            <span>Oignons et ail (pour faire suer dans le gras des os)</span>
+        </li>
+    </ul>
+
+    <h2>Garnitures</h2>
+    <ul class="ingredient-list">
+        <li class="ingredient-item" onclick="toggleItem(this)">
+            <input type="checkbox">
+            <span>Croûtons frottés à l'ail, dorés au gras de canard</span>
+        </li>
+        <li class="ingredient-item" onclick="toggleItem(this)">
+            <input type="checkbox">
+            <span>Éclats de châtaignes grillées</span>
+        </li>
+    </ul>
+
+    <h2>Préparation</h2>
+    <div class="step-list">
+        <div class="step-item" onclick="toggleStep(this)">
+            <strong>Os à moelle :</strong> Préchauffer le four à 200 °C. Rôtir les os 20 min, puis récupérer tout le gras de cuisson.
+        </div>
+        <div class="step-item" onclick="toggleStep(this)">
+            <strong>Cumin :</strong> Torréfier les graines de cumin entières à sec, à la poêle, jusqu'à ce qu'elles embaument.
+        </div>
+        <div class="step-item" onclick="toggleStep(this)">
+            <strong>Suage :</strong> Dans la marmite, faire suer les oignons et l'ail dans le gras des os.
+        </div>
+        <div class="step-item" onclick="toggleStep(this)">
+            <strong>Mijotage :</strong> Ajouter la citrouille, les lentilles, le cumin et les os rôtis. Mouiller avec le bouillon, porter à ébullition, puis mijoter jusqu'à ce que citrouille et lentilles soient tendres.
+        </div>
+        <div class="step-item" onclick="toggleStep(this)">
+            <strong>Lissage :</strong> Retirer les os (récupérer la moelle si désiré). Mixer au blender Ninja jusqu'à un velouté ultra-lisse, par petites quantités.
+        </div>
+        <div class="step-item" onclick="toggleStep(this)">
+            <strong>Service :</strong> Garnir de croûtons à l'ail et d'éclats de châtaignes grillées.
+        </div>
+    </div>
+
+    <div class="freeze-badge">
+        <i class="fas fa-info-circle"></i>
+        <span><strong>Congélation :</strong> Laisser refroidir complètement, puis répartir en pots hermétiques de 1 L (laisser un peu d'espace au sommet). Se conserve jusqu'à 3 mois. Préparer les croûtons et les châtaignes au moment de servir.</span>
+    </div>
+</div>
+
+<script>
+    let wakeLock = null;
+    const toggle = document.getElementById('wakeLockToggle');
+    const label = document.getElementById('status-label');
+    const errorDiv = document.getElementById('errorMessage');
+
+    async function requestWakeLock() {
+        try {
+            wakeLock = await navigator.wakeLock.request('screen');
+            label.textContent = "⚙️ Mode Cuisine activé (Écran allumé)";
+            label.style.color = "#e06d3b";
+            errorDiv.style.display = 'none';
+            
+            wakeLock.addEventListener('release', () => {
+                if(!toggle.checked) {
+                    label.textContent = "Mode Cuisine désactivé";
+                    label.style.color = "inherit";
+                }
+            });
+        } catch (err) {
+            toggle.checked = false;
+            label.textContent = "Erreur de verrouillage";
+            errorDiv.style.display = 'block';
+            errorDiv.innerHTML = `⚠️ Impossible de garder l'écran allumé.<br>Raison : ${err.message}<br><small>Note : GitHub Pages (HTTPS) est requis sur mobile.</small>`;
+        }
+    }
+
+    function handleRelease() {
+        if (wakeLock !== null) {
+            wakeLock.release();
+            wakeLock = null;
+        }
+        label.textContent = "Mode Cuisine désactivé";
+        label.style.color = "inherit";
+    }
+
+    toggle.addEventListener('change', (e) => {
+        if (e.target.checked) {
+            requestWakeLock();
+        } else {
+            handleRelease();
+        }
+    });
+
+    document.addEventListener('visibilitychange', async () => {
+        if (wakeLock !== null && document.visibilityState === 'visible' && toggle.checked) {
+            await requestWakeLock();
+        }
+    });
+
+    function toggleItem(el) {
+        const cb = el.querySelector('input[type="checkbox"]');
+        if (event.target !== cb) {
+            cb.checked = !cb.checked;
+        }
+        if (cb.checked) el.classList.add('checked');
+        else el.classList.remove('checked');
+    }
+
+    function toggleStep(el) {
+        el.classList.toggle('completed');
+    }
+</script>
+
+</body>
+</html>
