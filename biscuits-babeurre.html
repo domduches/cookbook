@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biscuits au babeurre feuilletés – Cookbook STP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;800&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F4EF; --ink:#1F2142; --muted:#5E6080; --card:#FFFFFF; --line:#D9D6E6; --accent:#E3B23C; --blue:#2B2D5B;
+  --head:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#14152B;--ink:#EEEDF7;--muted:#A3A5C6;--card:#1E2040;--line:#363965;--accent:#E3B23C;--blue:#8E92E0}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.65}
+main{max-width:42rem;margin:0 auto;padding:2rem 1.25rem 4rem}
+a{color:var(--blue)}
+a:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.back{font-family:var(--head);font-weight:500;font-size:.95rem}
+h1{font-family:var(--head);font-weight:800;font-size:clamp(2.1rem,8vw,3.4rem);line-height:1.05;margin:1.5rem 0 1rem;color:var(--blue);letter-spacing:-.02em}
+.intro{color:var(--muted);margin:0 0 1.5rem}
+.facts{display:flex;flex-wrap:wrap;gap:.5rem 2rem;margin:0 0 2.5rem;padding:1rem 0;border-top:3px solid var(--accent);border-bottom:1px solid var(--line);font-family:var(--head)}
+.facts div{display:flex;flex-direction:column}
+.facts dt{font-size:.85rem;color:var(--muted);font-weight:500}
+.facts dd{margin:0;font-weight:800;font-size:1.15rem}
+h2{font-family:var(--head);font-weight:800;font-size:1.5rem;margin:2.5rem 0 .75rem;color:var(--blue)}
+ul,ol{padding-left:1.25rem;margin:0}
+li{margin:.4rem 0}
+.ing{list-style:none;padding:0}
+.ing li{padding:.45rem 0;border-bottom:1px solid var(--line);margin:0}
+.steps{padding-left:0;list-style:none;counter-reset:s}
+.steps>li{counter-increment:s;position:relative;padding:0 0 0 2.75rem;margin:0 0 1.75rem}
+.steps>li::before{content:counter(s);position:absolute;left:0;top:0;width:2rem;height:2rem;border-radius:50%;background:var(--blue);color:var(--bg);font-family:var(--head);font-weight:800;display:grid;place-items:center}
+.steps h3{font-family:var(--head);font-weight:800;font-size:1.15rem;margin:0 0 .35rem}
+.steps ul{margin-top:.25rem}
+.tip{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--accent);border-radius:6px;padding:1rem 1.25rem;margin:1.5rem 0 0}
+.tip p{margin:0}
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="index.html">← Cookbook STP</a>
+
+  <h1>Biscuits au babeurre feuilletés</h1>
+  <p class="intro">Des biscuits tendres et feuilletés, préparés au batteur sur socle KitchenAid. Le secret : de courtes impulsions à basse vitesse, pour ne pas réchauffer le beurre ni trop développer le gluten. Servez-les chauds avec du fromage de chèvre aux bleuets.</p>
+
+  <dl class="facts">
+    <div><dt>Portions</dt><dd>8 biscuits</dd></div>
+    <div><dt>Four</dt><dd>425 °F (220 °C)</dd></div>
+    <div><dt>Cuisson</dt><dd>12 à 15 min</dd></div>
+  </dl>
+
+  <h2>Accessoires requis</h2>
+  <ul>
+    <li>Le bol en acier inoxydable, idéalement placé 10 minutes au réfrigérateur ou au congélateur avant de commencer</li>
+    <li>Le batteur plat (la feuille). N’utilisez pas le crochet pétrisseur.</li>
+  </ul>
+
+  <h2>Ingrédients</h2>
+  <ul class="ing">
+    <li>2 tasses (250 g) de farine tout usage</li>
+    <li>1 c. à soupe de poudre à pâte (levure chimique)</li>
+    <li>½ c. à thé de bicarbonate de soude</li>
+    <li>½ c. à thé de sel</li>
+    <li>½ tasse (115 g) de beurre non salé très froid, coupé en cubes de 1 cm</li>
+    <li>¾ tasse (180 ml) de babeurre très froid (ou ¾ tasse de lait + 2 c. à thé de jus de citron, reposé 5 min)</li>
+    <li>1 c. à soupe de beurre fondu, pour badigeonner à la sortie du four</li>
+  </ul>
+
+  <h2>Préparation au KitchenAid</h2>
+  <ol class="steps">
+    <li>
+      <h3>Mélanger les ingrédients secs</h3>
+      <ul>
+        <li>Préchauffez le four à 425 °F (220 °C).</li>
+        <li>Versez la farine, la poudre à pâte, le bicarbonate de soude et le sel dans le bol du batteur.</li>
+        <li>Mélangez à la vitesse 1 (Remuer) pendant environ 15 secondes pour aérer et bien répartir les poudres.</li>
+      </ul>
+    </li>
+    <li>
+      <h3>Sabler le beurre froid</h3>
+      <ul>
+        <li>Ajoutez les cubes de beurre très froid dans le bol.</li>
+        <li>Actionnez le batteur à la vitesse 2 pendant 30 à 45 secondes maximum. Arrêtez dès que le beurre est enrobé de farine et que les morceaux ont la taille de gros pois ou de flocons aplatis. Il ne faut surtout pas obtenir une pâte homogène à cette étape.</li>
+      </ul>
+    </li>
+    <li>
+      <h3>Incorporer le babeurre</h3>
+      <ul>
+        <li>Réglez sur la vitesse 1 (Remuer) et versez le babeurre froid en un filet continu pendant 10 à 15 secondes.</li>
+        <li>Arrêtez le batteur dès que la pâte commence à former de gros grumeaux humides. Il restera un peu de farine sèche au fond du bol : c’est tout à fait normal.</li>
+      </ul>
+    </li>
+    <li>
+      <h3>Terminer le pliage à la main</h3>
+      <ul>
+        <li>Renversez le contenu du bol sur un plan de travail légèrement fariné et rassemblez la pâte avec vos mains, sans la pétrir.</li>
+        <li>Aplatissez-la en rectangle, pliez-la en trois comme une lettre, tournez d’un quart de tour et répétez 2 à 3 fois pour créer les étages feuilletés.</li>
+        <li>Abaissez à environ 2 cm (¾ po) d’épaisseur.</li>
+      </ul>
+    </li>
+    <li>
+      <h3>Cuire et garnir à chaud</h3>
+      <ul>
+        <li>Découpez les biscuits et déposez-les sur une plaque avec papier parchemin, en les faisant se toucher légèrement.</li>
+        <li>Enfournez 12 à 15 minutes, jusqu’à ce qu’ils soient bien dorés.</li>
+        <li>Badigeonnez de beurre fondu dès la sortie du four, ouvrez-les en deux et déposez aussitôt le fromage de chèvre aux bleuets pour qu’il devienne bien fondant.</li>
+      </ul>
+    </li>
+  </ol>
+</main>
+</body>
+</html>
